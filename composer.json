@@ -1,0 +1,34 @@
+{
+    "name": "vipszx/express",
+    "description": "",
+    "keywords": [
+        "vipszx",
+        "express"
+    ],
+    "homepage": "https://github.com/vipszx/express",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "mark",
+            "email": "635879675@qq.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.1",
+        "guzzlehttp/guzzle": "^6",
+        "ext-json": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Vipszx\\Express\\": "src"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
