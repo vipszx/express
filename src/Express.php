@@ -2,7 +2,7 @@
 
 namespace Vipszx\Express;
 
-use Vipszx\Express\ExpressNumber;
+use Vipszx\Express\Contracts\PackageInterface;
 use Vipszx\Express\Gateways\Gateway;
 
 class Express
@@ -14,13 +14,13 @@ class Express
         $this->gateway = $gateway;
     }
 
-    public function query(ExpressNumber $expressNo)
+    public function query(PackageInterface $package)
     {
-        return $this->gateway->query($expressNo);
+        return $this->gateway->query($package);
     }
 
-    public function subscribe(ExpressNumber $expressNo, $callbackUrl)
+    public function subscribe(PackageInterface $package, $callbackUrl)
     {
-        return $this->gateway->subscribe($expressNo, $callbackUrl);
+        return $this->gateway->subscribe($package, $callbackUrl);
     }
 }

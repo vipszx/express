@@ -2,15 +2,15 @@
 
 namespace Vipszx\Express\Gateways;
 
-use Vipszx\Express\Contracts\ExpressNumberInterface;
+use Vipszx\Express\Contracts\PackageInterface;
 
 abstract class Gateway
 {
-    public function query(ExpressNumberInterface $expressNumber)
+    public function query(PackageInterface $package)
     {
     }
 
-    public function subscribe(ExpressNumberInterface $expressNumber, string $callbackUrl)
+    public function subscribe(PackageInterface $package, string $callbackUrl)
     {
     }
 }

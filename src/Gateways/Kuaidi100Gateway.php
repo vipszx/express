@@ -2,7 +2,7 @@
 
 namespace Vipszx\Express\Gateways;
 
-use Vipszx\Express\Contracts\ExpressNumberInterface;
+use Vipszx\Express\Contracts\PackageInterface;
 use Vipszx\Express\Exceptions\GatewayErrorException;
 use Vipszx\Express\Exceptions\HttpException;
 use GuzzleHttp\Client;
@@ -22,14 +22,14 @@ class Kuaidi100Gateway extends Gateway
         $this->customer = $customer;
     }
 
-    public function query(ExpressNumberInterface $expressNumber)
+    public function query(PackageInterface $package)
     {
         $param = [
-            'com' => $expressNumber->getCompanyCode(), //快递公司编码
-            'num' => $expressNumber->getNumber(),      //快递单号
-            'phone' => '',                             //手机号
-            'from' => '',                              //出发地城市
-            'to' => '',                                //目的地城市
+            'com' => $package->getCompanyCode(),       //快递公司编码
+            'num' => $package->getNumber(),            //快递单号
+            'phone' => $package->getReceiverContact(), //手机号
+            'from' => $package->getSenderAddress(),    //出发地城市
+            'to' => $package->getReceiverAddress(),    //目的地城市
             'resultv2' => '1'                          //开启行政区域解析
         ];
 
@@ -40,14 +40,14 @@ class Kuaidi100Gateway extends Gateway
         return $this->httpRequest(self::QUERY_URL, $postData);
     }
 
-    public function subscribe(ExpressNumberInterface $expressNumber, string $callbackUrl)
+    public function subscribe(PackageInterface $package, string $callbackUrl)
     {
         $param = [
-            'company' => $expressNumber->getCompanyCode(), //快递公司编码
-            'number' => $expressNumber->getNumber(),       //快递单号
-            'from' => '',                                  //出发地城市
-            'to' => '',                                    //目的地城市
-            'key' => $this->appKey,                        //客户授权key
+            'company' => $package->getCompanyCode(), //快递公司编码
+            'number' => $package->getNumber(),       //快递单号
+            'from' => $package->getSenderAddress(),  //出发地城市
+            'to' => $package->getReceiverAddress(),  //目的地城市
+            'key' => $this->appKey,                  //客户授权key
             'parameters' => [
                 'callbackurl' => $callbackUrl,          //回调地址
 //                'salt' => '',                 //加密串

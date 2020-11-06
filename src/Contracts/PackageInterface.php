@@ -2,7 +2,7 @@
 
 namespace Vipszx\Express\Contracts;
 
-interface ExpressNumberInterface
+interface PackageInterface
 {
     public function getNumber();
 
