@@ -9,9 +9,9 @@ composer require vipszx/express
 ## Usage
 
 ``` php
-$expressNo = new ExpressNumber('expressNumber', 'companyCode');
+$package = new Package('expressNumber', 'companyCode');
 $gateway = new Kuaidi100Gateway('appKey', 'customer');
 $express = new Express($gateway);
-$express->query($expressNo); //查询接口
-$express->subscribe($expressNo, 'callbackUrl); //订阅接口
+$express->query($package); //查询接口
+$express->subscribe($package, 'callbackUrl); //订阅接口
 ```
